@@ -70,7 +70,16 @@ def get_files_in_directory(directory):
       files.append(file.name)
   return files
 
-exe_files = get_files_in_directory('benign')
-for exe_file in exe_files:
-  draw_curve(8, 'benign/'+exe_file)
+def list_files_with_paths(directory):
+  file_paths = [str(file) for file in Path(directory).rglob('*') if file.is_file()]
+  return file_paths
+
+if __name__ == '__main__':
+  exe_files = get_files_in_directory('F:\DATA\COURS UVBF\MEMOIRE\DikeDataset-main\DikeDataset-main\\files\malware')
+  i = 0
+  total_files = len(exe_files)
+  for exe_file in exe_files:
+    i+=1
+    print(i, '/', total_files, '-------->', exe_file)
+    draw_curve(8, exe_file)
 
